@@ -13,15 +13,14 @@
    limitations under the License.
 */
 
-var BrotliInput = require('./streams').BrotliInput;
-var BrotliOutput = require('./streams').BrotliOutput;
-var BrotliBitReader = require('./bit_reader');
-var BrotliDictionary = require('./dictionary');
+import { BrotliInput, BrotliOutput } from "./streams.js";
+import { BrotliBitReader } from "./bit_reader.js";
+import { BrotliDictionary = require('./dictionary');
 var HuffmanCode = require('./huffman').HuffmanCode;
 var BrotliBuildHuffmanTable = require('./huffman').BrotliBuildHuffmanTable;
-var Context = require('./context');
-var Prefix = require('./prefix');
-var Transform = require('./transform');
+import { Context } from "./context.js";
+import { Prefix } from "./prefix.js";
+import { Transform } "./transform.js";
 
 var kDefaultCodeLength = 8;
 var kCodeLengthRepeatCode = 16;
@@ -568,6 +567,8 @@ function BrotliDecompressedSize(buffer) {
   return out.meta_block_length;
 }
 
+const exports = {};
+
 exports.BrotliDecompressedSize = BrotliDecompressedSize;
 
 function BrotliDecompressBuffer(buffer, output_size) {
@@ -936,3 +937,6 @@ function BrotliDecompress(input, output) {
 exports.BrotliDecompress = BrotliDecompress;
 
 BrotliDictionary.init();
+
+const decode = exports;
+export { decode };
